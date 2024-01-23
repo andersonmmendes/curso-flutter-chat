@@ -34,6 +34,15 @@ class _AuthFormState extends State<AuthForm> {
                   decoration: const InputDecoration(
                     labelText: 'Nome',
                   ),
+                  validator: (value) {
+                    final name = value ?? '';
+
+                    if (name.trim().length < 5) {
+                      return 'Nome deve ter no mínimo 5 caracteres.';
+                    }
+
+                    return null;
+                  },
                 ),
               TextFormField(
                 key: const ValueKey('email'),
@@ -42,6 +51,15 @@ class _AuthFormState extends State<AuthForm> {
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
                 ),
+                validator: (value) {
+                  final email = value ?? '';
+
+                  if (!email.contains('@')) {
+                    return 'E-mail informado não é valido.';
+                  }
+
+                  return null;
+                },
               ),
               TextFormField(
                 key: const ValueKey('password'),
@@ -51,6 +69,15 @@ class _AuthFormState extends State<AuthForm> {
                 decoration: const InputDecoration(
                   labelText: 'Senha',
                 ),
+                validator: (value) {
+                  final password = value ?? '';
+
+                  if (password.length < 6) {
+                    return 'Senha deve ter no mínimo 6 caracteres.';
+                  }
+
+                  return null;
+                },
               ),
               const SizedBox(height: 12),
               ElevatedButton(
